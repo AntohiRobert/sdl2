@@ -244,7 +244,7 @@ foreach(_SUB ${SDL_X11_OPTIONS})
   dep_option(${_OPT}           "Enable ${_SUB} support" ON "VIDEO_X11" OFF)
 endforeach()
 set_option(VIDEO_COCOA         "Use Cocoa video driver" ${APPLE})
-set_option(DIRECTX             "Use DirectX for Windows audio/video" ${WINDOWS})
+#set_option(DIRECTX             "Use DirectX for Windows audio/video" ${WINDOWS})
 set_option(RENDER_D3D          "Enable the Direct3D render driver" ${WINDOWS})
 
 # TODO: We should (should we?) respect cmake's ${BUILD_SHARED_LIBS} flag here
@@ -792,6 +792,7 @@ elseif(WINDOWS)
   file(GLOB CORE_SOURCES ${SDL2_SOURCE_DIR}/src/core/windows/*.c)
   set(SOURCE_FILES ${SOURCE_FILES} ${CORE_SOURCES})
 
+  #[[
   # Check for DirectX
   if(DIRECTX)
     if("$ENV{DXSDK_DIR}" STREQUAL "")
@@ -812,6 +813,7 @@ elseif(WINDOWS)
     endif()
     set(CMAKE_REQUIRED_FLAGS)
   endif()
+  ]]
 
   if(SDL_AUDIO)
     set(SDL_AUDIO_DRIVER_WINMM 1)
